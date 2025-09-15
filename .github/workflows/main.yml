@@ -1,0 +1,33 @@
+# Practice on Git Hub Actions 
+# Part 1. Basics
+#
+# by Anatolii M.
+
+name: GitHub-Actions-Basics
+
+on: 
+  push: 
+    branches: ["main"]
+
+jobs:
+  test:
+    name: Run testings jobs 
+    runs-on: ubuntu-latest
+   
+    steps:
+      - name: Print Messages for first step for testings
+        run: echo "Run Testing job"
+      - name: Run multi-run script
+        run: |
+          echo The project must contain steps:
+          echo test, build and deploy.
+    
+  deploy:
+    name: Run deploy jobs
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: View version OS
+        run: lsb_release -a
+      - name: Print Message
+        run: echo "Hello from Deploy job"
