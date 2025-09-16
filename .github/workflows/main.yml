@@ -5,6 +5,11 @@
 
 name: GitHub-Actions-Basics
 
+# Global env variable for all jobs and steps
+env:
+  APPLICATION_NAME: "vteApp"
+  IMAGE_NAME: "nodejs-ver-${{ github.run_id }}"
+
 on: 
   push: 
     branches: ["main"]
@@ -21,6 +26,9 @@ jobs:
         run: |
           echo The project must contain steps:
           echo test, build and deploy.
+
+      - name: View global env variable
+        run: echo "Application name - ${{ env.APPLICATION_NAME }}"
     
   deploy:
     name: Run deploy jobs
@@ -33,3 +41,5 @@ jobs:
         run: lsb_release -a
       - name: Print Message
         run: echo "Hello from Deploy job"
+      - name: Print image name for deploy
+        run: echo "Image name is ${{ env.IMAGE_NAME }}"
