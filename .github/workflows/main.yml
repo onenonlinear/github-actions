@@ -29,6 +29,11 @@ jobs:
 
       - name: View global env variable
         run: echo "Application name - ${{ env.APPLICATION_NAME }}"
+          
+      - name: View in current folder
+        run: | 
+          ls -la
+          df -h
     
   deploy:
     name: Run deploy jobs
