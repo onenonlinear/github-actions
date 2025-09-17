@@ -34,6 +34,12 @@ jobs:
         run: | 
           ls -la
           df -h
+
+      - name: Git clone repo
+        uses: actions/checkout@v4
+
+      - name: List files in folders
+        run : ls -la
     
   deploy:
     name: Run deploy jobs
@@ -48,3 +54,7 @@ jobs:
         run: echo "Hello from Deploy job"
       - name: Print image name for deploy
         run: echo "Image name is ${{ env.IMAGE_NAME }}"
+      - name: Check some a package on the runner
+        run: aws --version 
+      - name: Check present a docker
+        run: docker --version
