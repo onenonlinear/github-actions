@@ -46,6 +46,9 @@ jobs:
     runs-on: ubuntu-24.04
     needs: test
     if: success()
+    env:
+      VAR_JOB1: "Variable1 for job level"
+      VAR_JOB2: "Variable2 for job level"
 
     steps:
       - name: View version OS
@@ -58,3 +61,10 @@ jobs:
         run: aws --version 
       - name: Check present a docker
         run: docker --version
+      - name: Print jobs variable
+        run: |
+          echo "Variable1 - ${{ env.VAR_JOB1 }}"
+          echo "Variable2 - ${{ env.VAR_JOB2 }}"
+          echo "Variable3 - $STEP_VAR"
+        env:
+          STEP_VAR: "This is local environment variable"
